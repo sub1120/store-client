@@ -1,5 +1,5 @@
 import styles from "./page.module.css";
-import StoreCard from "./components/cards/StoreCard";
+import StoreCard from "../components/cards/StoreCard";
 
 export default function Home() {
   return (

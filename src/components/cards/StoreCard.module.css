@@ -36,11 +36,6 @@
   font-size: var(--text-lg);
 }
 
-.show {
-  background: white;
-  border: none;
-}
-
 @media (min-width: 1024px) {
   .card {
     grid-template-columns: 50% 50%;
@@ -49,7 +44,7 @@
   }
 
   .image {
-    height: 70vh;
+    height: 100%;
   }
 
   .details {
