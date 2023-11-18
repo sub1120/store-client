@@ -36,6 +36,13 @@
   font-size: var(--text-lg);
 }
 
+.item {
+  display: flex;
+  justify-content: space-between;
+  margin: 8px 0px 8px 0px;
+  font-weight: var(--font-weight-md);
+}
+
 @media (min-width: 1024px) {
   .card {
     grid-template-columns: 50% 50%;
@@ -53,7 +60,8 @@
 
   .address,
   .contact,
-  .show {
+  .show,
+  .item {
     font-size: var(--text-md);
   }
 }

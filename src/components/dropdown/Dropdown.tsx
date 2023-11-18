@@ -3,7 +3,13 @@
 import { useState } from "react";
 import styles from "./Dropdown.module.css";
 
-const Dropdown = () => {
+const Dropdown = ({
+  children,
+  buttonText,
+}: {
+  children: React.ReactNode;
+  buttonText: string;
+}) => {
   const [isOpen, setOpen] = useState(false);
 
   const handleOpen = () => {
@@ -15,7 +21,7 @@ const Dropdown = () => {
   return (
     <div className={styles.dropdown}>
       <div role="button" className={styles.show} onClick={handleOpen}>
-        <div>Open - Closes at 8 PM </div>
+        <div>{buttonText}</div>
         <div className={isOpen ? styles.uparrow : styles.downarrow}></div>
       </div>
       <ul
@@ -23,21 +29,7 @@ const Dropdown = () => {
           isOpen ? styles.listOpen : styles.listClose
         }`}
       >
-        <li className={styles.item}>
-          <span>Monday</span> <span>10AM - 8PM</span>
-        </li>
-        <li className={styles.item}>
-          <span>Monday</span> <span>10AM - 8PM</span>
-        </li>
-        <li className={styles.item}>
-          <span>Monday</span> <span>10AM - 8PM</span>
-        </li>
-        <li className={styles.item}>
-          <span>Monday</span> <span>10AM - 8PM</span>
-        </li>
-        <li className={styles.item}>
-          <span>Monday</span> <span>10AM - 8PM</span>
-        </li>
+        {children}
       </ul>
     </div>
   );

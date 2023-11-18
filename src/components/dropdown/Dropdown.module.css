@@ -12,13 +12,6 @@
   opacity: 1;
 }
 
-.item {
-  display: flex;
-  justify-content: space-between;
-  margin: 8px 0px 8px 0px;
-  font-weight: var(--font-weight-md);
-}
-
 .show {
   font-weight: var(--font-weight-lg);
   margin-bottom: 16px;
@@ -26,6 +19,7 @@
   align-items: center;
   gap: 10px;
   height: 25px;
+  cursor: pointer;
 }
 
 .downarrow {
@@ -47,10 +41,6 @@
 @media (min-width: 1024px) {
   .list {
     width: 200px;
-  }
-
-  .item {
-    font-size: var(--text-md);
   }
 
   .show {
