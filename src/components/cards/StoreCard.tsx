@@ -1,14 +1,40 @@
+"use client";
+
 import Link from "next/link";
 import styles from "./StoreCard.module.css";
 import Dropdown from "../dropdown/Dropdown";
 import { IStore } from "@/types";
 import formatTime from "@/utils/formatTime";
+import { useEffect } from "react";
+import { motion, useAnimation } from "framer-motion";
+import { useInView } from "react-intersection-observer";
+
+const cardVariant = {
+  visible: { opacity: 1, y: 0, transition: { duration: 0.5 } },
+  hidden: { opacity: 0, y: 100 },
+};
 
 const StoreCard = ({ storeData }: { storeData: IStore }) => {
+  const control = useAnimation();
+  const [ref, inView] = useInView();
   const storeTimings = storeData.timing;
 
+  useEffect(() => {
+    if (inView) {
+      control.start("visible");
+    } else {
+      control.start("hidden");
+    }
+  }, [control, inView]);
+
   return (
-    <div className={styles.card}>
+    <motion.div
+      className={styles.card}
+      ref={ref}
+      variants={cardVariant}
+      initial="hidden"
+      animate={control}
+    >
       {/* store image */}
       <Link href={`/store/${storeData._id}`}>
         <div className={styles.image}>{storeData.name}</div>
@@ -62,7 +88,7 @@ const StoreCard = ({ storeData }: { storeData: IStore }) => {
           </Dropdown>
         </div>
       </div>
-    </div>
+    </motion.div>
   );
 };
 
