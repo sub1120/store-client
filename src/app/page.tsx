@@ -18,8 +18,6 @@ export default async function Home() {
   const response = await getData();
   const data = response.data;
 
-  console.log(data);
-
   return (
     <main className={styles.main}>
       <div className={styles.stores}>

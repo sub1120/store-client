@@ -58,6 +58,10 @@
     padding: 124px;
   }
 
+  .name {
+    font-size: var(--text-xl);
+  }
+
   .address,
   .contact,
   .show,

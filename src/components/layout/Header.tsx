@@ -9,10 +9,11 @@ const Header = () => {
 
   return (
     <header className={styles.header}>
-      {pathname === "/store" ? (
-        <div>
-          <Link href={"../"}>Back to All store</Link>
-        </div>
+      {pathname.match("/store*") ? (
+        <Link href={"../"} className={styles.back}>
+          <div className={styles.leftarrow}></div>
+          <div>Back to All store</div>
+        </Link>
       ) : (
         <div className={styles.contact}>
           <div>

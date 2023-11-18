@@ -10,7 +10,7 @@ const StoreCard = ({ storeData }: { storeData: IStore }) => {
   return (
     <div className={styles.card}>
       {/* store image */}
-      <Link href="/store">
+      <Link href={`/store/${storeData._id}`}>
         <div className={styles.image}>{storeData.name}</div>
       </Link>
 
@@ -18,7 +18,7 @@ const StoreCard = ({ storeData }: { storeData: IStore }) => {
       <div className={styles.details}>
         {/* basic details */}
         <div className={styles.basic}>
-          <Link href="/store">
+          <Link href={`/store/${storeData._id}`}>
             <h2 className={styles.name}>{storeData.name}</h2>
           </Link>
           <p className={styles.address}>{storeData.address}</p>

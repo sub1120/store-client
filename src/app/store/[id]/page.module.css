@@ -63,9 +63,17 @@
   gap: 16px;
 }
 
+.item {
+  display: flex;
+  justify-content: space-between;
+  margin: 8px 0px 8px 0px;
+  font-weight: var(--font-weight-md);
+}
+
 @media (min-width: 1024px) {
   .main {
     padding: 112px 175px 112px 175px;
+    font-size: var(--text-md);
   }
 
   .card {
@@ -74,18 +82,16 @@
     gap: 10px;
   }
 
+  .name {
+    font-size: var(--text-xl);
+  }
+
   .image {
-    height: 70vh;
+    height: 100%;
   }
 
   .details {
     padding: 74px 0px 74px 74px;
-  }
-
-  .address,
-  .contact,
-  .show {
-    font-size: var(--text-md);
   }
 
   .advance {
