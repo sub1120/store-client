@@ -4,7 +4,7 @@ import "./globals.css";
 import Header from "./components/layout/Header";
 
 const roboto = Roboto({
-  weight: "300",
+  weight: ["100", "300", "400", "700"],
   subsets: ["latin"],
   display: "swap",
 });

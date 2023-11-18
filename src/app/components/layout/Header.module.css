@@ -9,6 +9,7 @@
   display: flex;
   flex-direction: column;
   gap: 32px;
+  font-size: var(--text-md);
 }
 
 .book {
@@ -16,7 +17,7 @@
   position: sticky;
   align-self: flex-end;
   text-decoration: underline;
-  font-weight: 400;
+  font-weight: var(--font-weight-lg);
 }
 
 @media (min-width: 1024px) {
@@ -33,5 +34,6 @@
 
   .book {
     align-self: normal;
+    font-size: var(--text-md);
   }
 }
