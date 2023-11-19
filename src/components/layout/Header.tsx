@@ -4,7 +4,6 @@ import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
 
 import styles from "./Header.module.css";
-import "@/config/firebaseApp";
 import storeAPI from "@/api";
 
 const Header = () => {

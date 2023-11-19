@@ -14,34 +14,40 @@ const Store = ({ params }: { params: { id: string } }) => {
     storeAPI.getStoreData
   );
 
-  if (error || !data) return <div>Failed to load</div>;
+  if (error) {
+    throw error;
+  }
+
   if (isLoading) return <Loader />;
 
-  const storeData = data;
-  const storeTimings = storeData.timing;
+  if (!data) {
+    throw new Error("Failed to load");
+  }
+
+  const storeTimings = data.timing;
 
   return (
     <main className={styles.main}>
       <div className={styles.card}>
         {/* store image */}
-        <div className={styles.image}>{storeData.name}</div>
+        <div className={styles.image}>{data.name}</div>
 
         {/* store details */}
         <div className={styles.details}>
           {/* basic details */}
           <div className={styles.basic}>
-            <h2 className={styles.name}>{storeData.name}</h2>
-            <p className={styles.desc}>{storeData.description}</p>
+            <h2 className={styles.name}>{data.name}</h2>
+            <p className={styles.desc}>{data.description}</p>
           </div>
 
           <div className={styles.advance}>
             {/* contact details */}
             <div className={styles.contact}>
               <h2 className={styles.heading}>Contact Details</h2>
-              <p className={styles.address}>{storeData.address}</p>
+              <p className={styles.address}>{data.address}</p>
               <div>
-                <div>{storeData.phoneNumber}</div>
-                <div>{storeData.email}</div>
+                <div>{data.phoneNumber}</div>
+                <div>{data.email}</div>
               </div>
             </div>
 
@@ -49,7 +55,7 @@ const Store = ({ params }: { params: { id: string } }) => {
             <div className={styles.timings}>
               <h2 className={styles.heading}>Store Timings</h2>
               {/* store timings */}
-              <Dropdown buttonText={storeData.storeStatus}>
+              <Dropdown buttonText={data.storeStatus}>
                 <div className={styles.item}>
                   <span>Monday</span>
                   <span>{formatTime(storeTimings.monday)}</span>

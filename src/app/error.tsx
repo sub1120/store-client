@@ -1,6 +1,7 @@
 "use client";
+import styles from "./error.module.css";
 
-export default function GlobalError({
+export default function Error({
   error,
   reset,
 }: {
@@ -10,7 +11,7 @@ export default function GlobalError({
   console.log(error);
   return (
     <html>
-      <body>
+      <body className={styles.body}>
         <h2>Something went wrong!</h2>
         <button onClick={() => reset()}>Try again</button>
       </body>

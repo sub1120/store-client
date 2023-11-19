@@ -1,5 +1,5 @@
 .main {
-  height: 100vh;
+  height: 80vh;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -7,12 +7,10 @@
 
 .loader {
   font-size: var(--text-md);
-  font-weight: var(--font-weight-md);
 }
 
 @media (min-width: 1024px) {
   .loader {
     font-size: var(--text-lg);
-    font-weight: var(--font-weight-lg);
   }
 }

@@ -14,13 +14,22 @@ export default function Home() {
     storeAPI.getData
   );
 
-  if (error) return <div>Failed to load</div>;
+  if (error) {
+    throw error;
+  }
+
   if (isLoading) return <Loader />;
+
+  if (!data) {
+    throw new Error("Failed to load");
+  }
 
   return (
     <main className={styles.main}>
       <div className={styles.stores}>
-        {data?.map((item) => <StoreCard key={item._id} storeData={item} />)}
+        {data.map((item) => (
+          <StoreCard key={item._id} storeData={item} />
+        ))}
       </div>
     </main>
   );
