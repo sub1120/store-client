@@ -1,23 +1,35 @@
+"use client";
+
 import Dropdown from "@/components/dropdown/Dropdown";
 import styles from "./page.module.css";
-import { IStoreOneResponse } from "@/types";
+import { IStore } from "@/types";
 import formatTime from "@/utils/formatTime";
+import useSWR from "swr";
+import Loader from "@/components/loader/Loader";
 
-async function getStoreData(id: string): Promise<IStoreOneResponse> {
-  const res = await fetch(`http://localhost:4000/api/v1/store/${id}`, {
+async function getStoreData(url: string) {
+  const res = await fetch(`http://localhost:4000/api/v1/${url}`, {
     next: { revalidate: 60 },
+    headers: {
+      Authorization:
+        "Bearer " + JSON.parse(localStorage.getItem("token") as string),
+    },
   });
 
-  if (!res.ok) {
-    throw new Error("Failed to fetch data");
-  }
-
-  return res.json();
+  const resObj = await res.json();
+  return resObj.data;
 }
 
-const Store = async ({ params }: { params: { id: string } }) => {
-  const response = await getStoreData(params.id);
-  const storeData = response.data;
+const Store = ({ params }: { params: { id: string } }) => {
+  const { data, error, isLoading } = useSWR<IStore>(
+    `store/${params.id}`,
+    getStoreData
+  );
+
+  if (error || !data) return <div>Failed to load</div>;
+  if (isLoading) return <Loader />;
+
+  const storeData = data;
   const storeTimings = storeData.timing;
 
   return (
