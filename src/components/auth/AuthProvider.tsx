@@ -1,7 +1,6 @@
 "use client";
 
-import { getAuthStatus } from "@/config/firebaseAuth";
-import { User } from "firebase/auth";
+import storeAPI from "@/api";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 
@@ -10,7 +9,7 @@ const AuthProvider = ({ children }: { children: React.ReactNode }) => {
   const router = useRouter();
 
   useEffect(() => {
-    getAuthStatus(async (user: User) => {
+    storeAPI.getAuthStatus(async (user) => {
       if (user) {
         setLoading(true);
         const token = await user.getIdToken();

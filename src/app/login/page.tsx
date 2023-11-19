@@ -1,18 +1,18 @@
 "use client";
-import google from "@/assets/logos/google.png";
 
+import google from "@/assets/logos/google.png";
 import styles from "./page.module.css";
-import { getAuthStatus, signInWithGoogle } from "@/config/firebaseAuth";
 import Image from "next/image";
+import storeAPI from "@/api";
+
 import { useRouter } from "next/navigation";
 import { useEffect } from "react";
-import { User } from "firebase/auth";
 
 const Login = () => {
   const router = useRouter();
 
   useEffect(() => {
-    getAuthStatus(async (user: User) => {
+    storeAPI.getAuthStatus(async (user) => {
       if (user) {
         const token = await user.getIdToken();
 
@@ -28,7 +28,7 @@ const Login = () => {
 
   const handleLogin = async () => {
     try {
-      const { token } = await signInWithGoogle();
+      const { token } = await storeAPI.signIn();
 
       if (typeof window !== "undefined") {
         localStorage.setItem("token", JSON.stringify(token));

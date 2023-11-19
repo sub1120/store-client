@@ -2,28 +2,16 @@
 
 import Dropdown from "@/components/dropdown/Dropdown";
 import styles from "./page.module.css";
-import { IStore } from "@/types";
 import formatTime from "@/utils/formatTime";
 import useSWR from "swr";
 import Loader from "@/components/loader/Loader";
-
-async function getStoreData(url: string) {
-  const res = await fetch(`http://localhost:4000/api/v1/${url}`, {
-    next: { revalidate: 60 },
-    headers: {
-      Authorization:
-        "Bearer " + JSON.parse(localStorage.getItem("token") as string),
-    },
-  });
-
-  const resObj = await res.json();
-  return resObj.data;
-}
+import storeAPI from "@/api";
+import { IStore } from "@/types";
 
 const Store = ({ params }: { params: { id: string } }) => {
   const { data, error, isLoading } = useSWR<IStore>(
     `store/${params.id}`,
-    getStoreData
+    storeAPI.getStoreData
   );
 
   if (error || !data) return <div>Failed to load</div>;

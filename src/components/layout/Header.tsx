@@ -4,8 +4,8 @@ import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
 
 import styles from "./Header.module.css";
-import { logout } from "@/config/firebaseAuth";
 import "@/config/firebaseApp";
+import storeAPI from "@/api";
 
 const Header = () => {
   const router = useRouter();
@@ -17,7 +17,7 @@ const Header = () => {
 
   const handleLogout = async () => {
     try {
-      await logout();
+      await storeAPI.logout();
 
       if (typeof window !== "undefined") {
         localStorage.removeItem("token");
