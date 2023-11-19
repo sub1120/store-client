@@ -1,4 +1,5 @@
 import "@/config/firebaseApp";
+const API_URL = process.env.NEXT_PUBLIC_API_URL;
 
 import {
   GoogleAuthProvider,
@@ -19,7 +20,7 @@ const getData = async (url: string) => {
     },
   };
 
-  const res = await fetch(`http://localhost:4000/api/v1/${url}`, options);
+  const res = await fetch(`${API_URL}${url}`, options);
 
   const resObject = await res.json();
   return resObject.data;
@@ -34,7 +35,7 @@ async function getStoreData(url: string) {
     },
   };
 
-  const res = await fetch(`http://localhost:4000/api/v1/${url}`, options);
+  const res = await fetch(`${API_URL}${url}`, options);
 
   const resObject = await res.json();
   return resObject.data;
