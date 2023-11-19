@@ -2,19 +2,28 @@
 import google from "@/assets/logos/google.png";
 
 import styles from "./page.module.css";
-import { signInWithGoogle } from "@/config/firebaseAuth";
+import { getAuthStatus, signInWithGoogle } from "@/config/firebaseAuth";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { useEffect } from "react";
+import { User } from "firebase/auth";
 
 const Login = () => {
   const router = useRouter();
 
   useEffect(() => {
-    const accessToken = JSON.parse(localStorage.getItem("token") as string);
-    if (accessToken) {
-      router.push("/");
-    }
+    getAuthStatus(async (user: User) => {
+      if (user) {
+        const token = await user.getIdToken();
+
+        if (typeof window !== "undefined") {
+          localStorage.setItem("token", JSON.stringify(token));
+        }
+        router.push("/");
+      } else {
+        console.log("user is logged out");
+      }
+    });
   }, [router]);
 
   const handleLogin = async () => {

@@ -1,25 +1,33 @@
 "use client";
 
 import Link from "next/link";
-import styles from "./Header.module.css";
 import { usePathname, useRouter } from "next/navigation";
+
+import styles from "./Header.module.css";
+import { logout } from "@/config/firebaseAuth";
 import "@/config/firebaseApp";
-import { useEffect } from "react";
 
 const Header = () => {
   const router = useRouter();
   const pathname = usePathname();
 
-  useEffect(() => {
-    const accessToken = JSON.parse(localStorage.getItem("token") as string);
-    if (!accessToken) {
-      router.push("/login");
-    }
-  }, [router, pathname]);
-
   if (pathname === "/login") {
     return <></>;
   }
+
+  const handleLogout = async () => {
+    try {
+      await logout();
+
+      if (typeof window !== "undefined") {
+        localStorage.removeItem("token");
+      }
+      router.push("/login");
+    } catch (error) {
+      console.log(error);
+      throw error;
+    }
+  };
 
   return (
     <header className={styles.header}>
@@ -43,6 +51,9 @@ const Header = () => {
         <Link href="#" className={styles.book}>
           Book an appointment
         </Link>
+        <div role="button" className={styles.logout} onClick={handleLogout}>
+          Logout
+        </div>
       </div>
     </header>
   );

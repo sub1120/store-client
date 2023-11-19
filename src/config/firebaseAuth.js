@@ -3,6 +3,7 @@ import {
   signInWithPopup,
   signOut,
   GoogleAuthProvider,
+  onAuthStateChanged,
 } from "firebase/auth";
 
 const signInWithGoogle = async () => {
@@ -37,4 +38,9 @@ const logout = async () => {
   }
 };
 
-export { signInWithGoogle, logout };
+const getAuthStatus = (func) => {
+  const auth = getAuth();
+  onAuthStateChanged(auth, func);
+};
+
+export { signInWithGoogle, logout, getAuthStatus };
