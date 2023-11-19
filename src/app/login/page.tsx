@@ -12,7 +12,6 @@ const Login = () => {
 
   useEffect(() => {
     const accessToken = JSON.parse(localStorage.getItem("token") as string);
-    console.log(accessToken);
     if (accessToken) {
       router.push("/");
     }

@@ -12,12 +12,10 @@ const Header = () => {
 
   useEffect(() => {
     const accessToken = JSON.parse(localStorage.getItem("token") as string);
-    console.log(accessToken);
     if (!accessToken) {
-      alert("Login expired, please login");
       router.push("/login");
     }
-  }, [router]);
+  }, [router, pathname]);
 
   if (pathname === "/login") {
     return <></>;
