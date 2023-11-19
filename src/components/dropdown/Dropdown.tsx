@@ -8,7 +8,7 @@ const Dropdown = ({
   buttonText,
 }: {
   children: React.ReactNode;
-  buttonText: string;
+  buttonText: string | undefined;
 }) => {
   const [isOpen, setOpen] = useState(false);
 

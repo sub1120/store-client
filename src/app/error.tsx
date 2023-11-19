@@ -10,11 +10,9 @@ export default function Error({
 }) {
   console.log(error);
   return (
-    <html>
-      <body className={styles.body}>
-        <h2>Something went wrong!</h2>
-        <button onClick={() => reset()}>Try again</button>
-      </body>
-    </html>
+    <main className={styles.main}>
+      <h2>Something went wrong!</h2>
+      <button onClick={() => reset()}>Try again</button>
+    </main>
   );
 }

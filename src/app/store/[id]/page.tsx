@@ -20,34 +20,30 @@ const Store = ({ params }: { params: { id: string } }) => {
 
   if (isLoading) return <Loader />;
 
-  if (!data) {
-    throw new Error("Failed to load");
-  }
-
-  const storeTimings = data.timing;
+  const storeTimings = data?.timing;
 
   return (
     <main className={styles.main}>
       <div className={styles.card}>
         {/* store image */}
-        <div className={styles.image}>{data.name}</div>
+        <div className={styles.image}>{data?.name}</div>
 
         {/* store details */}
         <div className={styles.details}>
           {/* basic details */}
           <div className={styles.basic}>
-            <h2 className={styles.name}>{data.name}</h2>
-            <p className={styles.desc}>{data.description}</p>
+            <h2 className={styles.name}>{data?.name}</h2>
+            <p className={styles.desc}>{data?.description}</p>
           </div>
 
           <div className={styles.advance}>
             {/* contact details */}
             <div className={styles.contact}>
               <h2 className={styles.heading}>Contact Details</h2>
-              <p className={styles.address}>{data.address}</p>
+              <p className={styles.address}>{data?.address}</p>
               <div>
-                <div>{data.phoneNumber}</div>
-                <div>{data.email}</div>
+                <div>{data?.phoneNumber}</div>
+                <div>{data?.email}</div>
               </div>
             </div>
 
@@ -55,34 +51,34 @@ const Store = ({ params }: { params: { id: string } }) => {
             <div className={styles.timings}>
               <h2 className={styles.heading}>Store Timings</h2>
               {/* store timings */}
-              <Dropdown buttonText={data.storeStatus}>
+              <Dropdown buttonText={data?.storeStatus}>
                 <div className={styles.item}>
                   <span>Monday</span>
-                  <span>{formatTime(storeTimings.monday)}</span>
+                  <span>{formatTime(storeTimings?.monday)}</span>
                 </div>
                 <div className={styles.item}>
                   <span>Tuesday</span>
-                  <span>{formatTime(storeTimings.tuesday)}</span>
+                  <span>{formatTime(storeTimings?.tuesday)}</span>
                 </div>
                 <div className={styles.item}>
                   <span>Wednessday</span>
-                  <span>{formatTime(storeTimings.wednessday)}</span>
+                  <span>{formatTime(storeTimings?.wednessday)}</span>
                 </div>
                 <div className={styles.item}>
                   <span>Thursday</span>
-                  <span>{formatTime(storeTimings.thursday)}</span>
+                  <span>{formatTime(storeTimings?.thursday)}</span>
                 </div>
                 <div className={styles.item}>
                   <span>Friday</span>
-                  <span>{formatTime(storeTimings.friday)}</span>
+                  <span>{formatTime(storeTimings?.friday)}</span>
                 </div>
                 <div className={styles.item}>
                   <span>Saturday</span>
-                  <span>{formatTime(storeTimings.saturday)}</span>
+                  <span>{formatTime(storeTimings?.saturday)}</span>
                 </div>
                 <div className={styles.item}>
                   <span>Sunday</span>
-                  <span>{formatTime(storeTimings.sunday)}</span>
+                  <span>{formatTime(storeTimings?.sunday)}</span>
                 </div>
               </Dropdown>
             </div>

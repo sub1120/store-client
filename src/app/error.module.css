@@ -1,4 +1,4 @@
-.body {
+.main {
   height: 100vh;
   display: flex;
   flex-direction: column;
@@ -9,7 +9,7 @@
   font-weight: var(--font-weight-md);
 }
 
-.body button {
+.main button {
   background-color: white;
   font-size: var(--text-md);
   padding: 24px 32px 24px 32px;
