@@ -13,12 +13,10 @@ const signInWithGoogle = async () => {
 
   const result = await signInWithPopup(auth, provider);
   try {
-    const credential = GoogleAuthProvider.credentialFromResult(result);
-    const token = credential.accessToken;
     // The signed-in user info.
-    const user = result.user;
+    const token = await result.user.getIdToken();
 
-    return { token, user };
+    return { token };
   } catch (error) {
     // Handle Errors here.
     console.log(error);
