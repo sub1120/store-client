@@ -3,6 +3,9 @@
   display: flex;
   flex-direction: column;
   gap: 32px;
+  background-color: white;
+  position: relative;
+  z-index: 20;
 }
 
 .contact {
@@ -29,22 +32,37 @@
 
 .headerRight {
   display: flex;
-  flex-direction: column;
+  justify-content: flex-end;
   gap: 10px;
 }
 
 .book {
-  top: 0px;
-  position: sticky;
   align-self: flex-end;
   text-decoration: underline;
   font-weight: var(--font-weight-lg);
 }
 
 .logout {
-  align-self: flex-end;
+  display: flex;
+  flex-direction: column;
   color: red;
   cursor: pointer;
+  text-decoration: underline;
+}
+
+.stickyHeader {
+  width: 100%;
+  padding: 16px 20px 16px 20px;
+  text-align: end;
+  top: 0px;
+  position: fixed;
+  z-index: 10;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 10px;
+  background-color: white;
 }
 
 @media (min-width: 1024px) {
@@ -67,5 +85,14 @@
   .headerRight {
     flex-direction: row;
     font-size: var(--text-md);
+  }
+
+  .stickyHeader {
+    padding: 16px 175px 16px 175px;
+    font-size: var(--text-md);
+  }
+
+  .logout {
+    font-weight: var(--font-weight-md);
   }
 }

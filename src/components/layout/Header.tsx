@@ -29,32 +29,45 @@ const Header = () => {
   };
 
   return (
-    <header className={styles.header}>
-      {pathname.match("/store*") ? (
-        <Link href={"../"} className={styles.back}>
-          <div className={styles.leftarrow}></div>
-          <div>Back to All store</div>
-        </Link>
-      ) : (
-        <div className={styles.contact}>
-          <div>
-            Call us <br /> +1123476778
-          </div>
-          <div>
-            Write to us <br /> hello@brandname.co
-          </div>
-        </div>
-      )}
+    <>
+      <header>
+        <div className={styles.header}>
+          {pathname.match("/store*") ? (
+            <Link href={"../"} className={styles.back}>
+              <div className={styles.leftarrow}></div>
+              <div>Back to All store</div>
+            </Link>
+          ) : (
+            <div className={styles.contact}>
+              <div>
+                Call us <br /> +1123476778
+              </div>
+              <div>
+                Write to us <br /> hello@brandname.co
+              </div>
+            </div>
+          )}
 
-      <div className={styles.headerRight}>
-        <Link href="#" className={styles.book}>
-          Book an appointment
-        </Link>
-        <div role="button" className={styles.logout} onClick={handleLogout}>
-          Logout
+          <div className={styles.headerRight}>
+            <Link href="#" className={styles.book}>
+              Book an appointment
+            </Link>
+            <div role="button" className={styles.logout} onClick={handleLogout}>
+              Logout
+            </div>
+          </div>
         </div>
-      </div>
-    </header>
+
+        <div className={styles.stickyHeader}>
+          <Link href="#" className={styles.book}>
+            Book an appointment
+          </Link>
+          <div role="button" className={styles.logout} onClick={handleLogout}>
+            Logout
+          </div>
+        </div>
+      </header>
+    </>
   );
 };
 
