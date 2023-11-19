@@ -1,0 +1,47 @@
+.main {
+  padding: 48px 20px 48px 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.center {
+  display: flex;
+  text-align: center;
+  flex-direction: column;
+  gap: 40px;
+}
+
+.login {
+  width: 350px;
+  padding: 24px 32px 24px 32px;
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+  align-items: center;
+  border: 1px solid gray;
+  cursor: pointer;
+  font-size: var(--text-md);
+  font-weight: var(--font-weight-lg);
+}
+
+.brand {
+  font-size: var(--text-lg);
+  font-weight: var(--font-weight-lg);
+}
+
+@media (min-width: 1024px) {
+  .login {
+    width: 477px;
+    font-size: var(--text-lg);
+  }
+
+  .brand {
+    font-size: var(--text-xl);
+  }
+
+  .center {
+    gap: 64px;
+  }
+}

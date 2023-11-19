@@ -2,10 +2,26 @@
 
 import Link from "next/link";
 import styles from "./Header.module.css";
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
+import "@/config/firebaseApp";
+import { useEffect } from "react";
 
 const Header = () => {
+  const router = useRouter();
   const pathname = usePathname();
+
+  useEffect(() => {
+    const accessToken = JSON.parse(localStorage.getItem("token") as string);
+    console.log(accessToken);
+    if (!accessToken) {
+      alert("Login expired, please login");
+      router.push("/login");
+    }
+  }, [router]);
+
+  if (pathname === "/login") {
+    return <></>;
+  }
 
   return (
     <header className={styles.header}>
@@ -25,8 +41,10 @@ const Header = () => {
         </div>
       )}
 
-      <div className={styles.book}>
-        <Link href="#">Book an appointment</Link>
+      <div className={styles.headerRight}>
+        <Link href="#" className={styles.book}>
+          Book an appointment
+        </Link>
       </div>
     </header>
   );
