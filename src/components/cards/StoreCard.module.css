@@ -48,6 +48,7 @@
     grid-template-columns: 50% 50%;
     padding: 0px 0px 112px 0px;
     gap: 10px;
+    font-size: var(--text-md);
   }
 
   .image {
@@ -60,12 +61,5 @@
 
   .name {
     font-size: var(--text-xl);
-  }
-
-  .address,
-  .contact,
-  .show,
-  .item {
-    font-size: var(--text-md);
   }
 }

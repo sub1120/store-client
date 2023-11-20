@@ -3,8 +3,9 @@
 import Link from "next/link";
 import styles from "./StoreCard.module.css";
 import Dropdown from "../dropdown/Dropdown";
-import { IStore } from "@/types";
 import formatTime from "@/utils/formatTime";
+
+import { IStore } from "@/types";
 import { useEffect } from "react";
 import { motion, useAnimation } from "framer-motion";
 import { useInView } from "react-intersection-observer";
