@@ -7,6 +7,7 @@ import useSWR from "swr";
 import Loader from "@/components/loader/Loader";
 import storeAPI from "@/api";
 import { IStore } from "@/types";
+import getStoreStatus from "@/utils/getStoreStatus";
 
 const Store = ({ params }: { params: { id: string } }) => {
   const { data, error, isLoading } = useSWR<IStore>(
@@ -21,6 +22,11 @@ const Store = ({ params }: { params: { id: string } }) => {
   if (isLoading) return <Loader />;
 
   const storeTimings = data?.timing;
+
+  let storeStatus = "";
+  if (data?.timing) {
+    storeStatus = getStoreStatus(data?.timing);
+  }
 
   return (
     <main className={styles.main}>
@@ -51,7 +57,7 @@ const Store = ({ params }: { params: { id: string } }) => {
             <div className={styles.timings}>
               <h2 className={styles.heading}>Store Timings</h2>
               {/* store timings */}
-              <Dropdown buttonText={data?.storeStatus}>
+              <Dropdown buttonText={storeStatus}>
                 <div className={styles.item}>
                   <span>Monday</span>
                   <span>{formatTime(storeTimings?.monday)}</span>

@@ -1,11 +1,11 @@
 export enum DAYS {
-  "Monday",
-  "Tuesday",
-  "Wednessday",
-  "Thursday",
-  "Friday",
-  "Saturday",
-  "Sunday",
+  "monday",
+  "tuesday",
+  "wednessday",
+  "thursday",
+  "friday",
+  "saturday",
+  "sunday",
 }
 
 export enum PERIODS {
@@ -41,7 +41,6 @@ export interface IStore {
     sunday: IStoreTime;
   };
   description: string;
-  storeStatus: string;
 }
 
 export interface IStoreManyResponse {

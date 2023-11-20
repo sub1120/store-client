@@ -9,6 +9,7 @@ import { IStore } from "@/types";
 import { useEffect } from "react";
 import { motion, useAnimation } from "framer-motion";
 import { useInView } from "react-intersection-observer";
+import getStoreStatus from "@/utils/getStoreStatus";
 
 const cardVariant = {
   visible: { opacity: 1, y: 0, transition: { duration: 0.5 } },
@@ -27,6 +28,11 @@ const StoreCard = ({ storeData }: { storeData: IStore }) => {
       control.start("hidden");
     }
   }, [control, inView]);
+
+  let storeStatus = "";
+  if (storeData?.timing) {
+    storeStatus = getStoreStatus(storeData?.timing);
+  }
 
   return (
     <motion.div
@@ -57,7 +63,7 @@ const StoreCard = ({ storeData }: { storeData: IStore }) => {
 
         {/* store timings */}
         <div className={styles.timings}>
-          <Dropdown buttonText={storeData.storeStatus}>
+          <Dropdown buttonText={storeStatus}>
             <div className={styles.item}>
               <span>Monday</span>
               <span>{formatTime(storeTimings.monday)}</span>
