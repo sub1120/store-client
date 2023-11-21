@@ -12,11 +12,8 @@ const Login = () => {
 
   const handleLogin = async () => {
     try {
-      const { token } = await storeAPI.signIn();
+      await storeAPI.signIn();
 
-      if (typeof window !== "undefined") {
-        localStorage.setItem("token", JSON.stringify(token));
-      }
       router.push("/");
     } catch (error) {
       console.log(error);
