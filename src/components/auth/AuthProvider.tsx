@@ -16,10 +16,6 @@ const AuthProvider = ({ children }: { children: React.ReactNode }) => {
       if (user) {
         const token = await user.getIdToken();
         setAuth(token);
-
-        if (typeof window !== "undefined") {
-          localStorage.setItem("token", JSON.stringify(token));
-        }
       } else {
         setAuth(null);
         console.log("user is logged out");
@@ -32,7 +28,7 @@ const AuthProvider = ({ children }: { children: React.ReactNode }) => {
 
   // If public route
   if (pathname === "/login") {
-    return <>{children}</>;
+    return <>{isLoading ? <Loader /> : !auth && children}</>;
   }
 
   // If protected route

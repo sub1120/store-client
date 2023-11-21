@@ -17,10 +17,6 @@ const Header = () => {
   const handleLogout = async () => {
     try {
       await storeAPI.logout();
-
-      if (typeof window !== "undefined") {
-        localStorage.removeItem("token");
-      }
       router.push("/login");
     } catch (error) {
       console.log(error);

@@ -12,11 +12,17 @@ import {
 } from "firebase/auth";
 
 const getData = async (url: string) => {
+  const token = await getAuthToken();
+
+  if (!token) {
+    console.log("User not logged in");
+    return;
+  }
+
   const options = {
     next: { revalidate: 60 },
     headers: {
-      Authorization:
-        "Bearer " + JSON.parse(localStorage.getItem("token") as string),
+      Authorization: `Bearer ${token}`,
     },
   };
 
@@ -27,11 +33,17 @@ const getData = async (url: string) => {
 };
 
 async function getStoreData(url: string) {
+  const token = await getAuthToken();
+
+  if (!token) {
+    console.log("User not logged in");
+    return;
+  }
+
   const options = {
     next: { revalidate: 60 },
     headers: {
-      Authorization:
-        "Bearer " + JSON.parse(localStorage.getItem("token") as string),
+      Authorization: `Bearer ${token}`,
     },
   };
 
@@ -74,6 +86,13 @@ const logout = async () => {
 const getAuthStatus = (func: NextOrObserver<User>) => {
   const auth = getAuth();
   onAuthStateChanged(auth, func);
+};
+
+const getAuthToken = () => {
+  const auth = getAuth();
+  const token = auth.currentUser?.getIdToken();
+
+  return token;
 };
 
 const storeAPI = { getData, getStoreData, signIn, logout, getAuthStatus };

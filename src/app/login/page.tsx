@@ -6,25 +6,9 @@ import Image from "next/image";
 import storeAPI from "@/api";
 
 import { useRouter } from "next/navigation";
-import { useEffect } from "react";
 
 const Login = () => {
   const router = useRouter();
-
-  useEffect(() => {
-    storeAPI.getAuthStatus(async (user) => {
-      if (user) {
-        const token = await user.getIdToken();
-
-        if (typeof window !== "undefined") {
-          localStorage.setItem("token", JSON.stringify(token));
-        }
-        router.push("/");
-      } else {
-        console.log("user is logged out");
-      }
-    });
-  }, [router]);
 
   const handleLogin = async () => {
     try {
